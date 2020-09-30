@@ -2,9 +2,11 @@ version: "2.2"
 services:
   msfandroid: 
    image: msf
+   stdin_open: true
+   tty: true
    networks:
       static-network:
-        ipv4_address: 172.18.0.22
+        ipv4_address: 172.20.0.22
    ports:
     - 5556:5556
    command: msfconsole -r /rc/android
