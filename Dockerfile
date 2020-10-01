@@ -5,7 +5,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 # PosgreSQL DB
 COPY ./scripts/db.sql /tmp/
 # Startup script
-COPY ./scripts/init.sh /usr/local/bin/init.sh
+
 
 WORKDIR /opt
 
@@ -32,7 +32,7 @@ RUN apt-get -qq update \
 
 # DB config
 COPY ./conf/database.yml /opt/metasploit-framework/config/
-
+COPY ./scripts/init.sh /usr/local/bin/init.sh
 # Configuration and sharing folders
 VOLUME /root/.msf4/
 VOLUME /tmp/data/
@@ -43,4 +43,4 @@ ENV LANG C.UTF-8
 WORKDIR /opt/metasploit-framework
 
 ENTRYPOINT [ "init.sh" ]
-CMD /opt/metsploit-framework/msfconsole
+CMD ./msfconsole
