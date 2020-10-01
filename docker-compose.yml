@@ -10,7 +10,7 @@ services:
         ipv4_address: 172.20.0.22
    ports:
     - 5556:5556
-   command: msfconsole -r /rc/android
+   command: /opt/metasploit-framework/msfconsole -r /rc/android
    volumes:
     - ~/.msf4:/root/.msf4
     - /tmp/msf:/tmp/data
@@ -25,7 +25,7 @@ msfunix:
         ipv4_address: 172.20.0.23
    ports:
     - 5557:5557
-   command: msfconsole -r /rc/unix
+   command: /opt/metasploit-framework/msfconsole -r /rc/unix
    volumes:
     - ~/.msf4:/root/.msf4
     - /tmp/msf:/tmp/data
@@ -40,7 +40,7 @@ msfwindows:
         ipv4_address: 172.20.0.24
    ports:
     - 5555:5555
-   command: msfconsole -r /rc/windows
+   command: /opt/metasploit-framework/msfconsole -r /rc/windows
    volumes:
     - ~/.msf4:/root/.msf4
     - /tmp/msf:/tmp/data
