@@ -3,7 +3,7 @@ services:
 
   msfmulti: 
    image: pepinoselvagem/msf
-   container_name: msfwindows
+   container_name: msfmulti
    stdin_open: true
    tty: true
    networks:
@@ -13,7 +13,8 @@ services:
     - 5555:5555
     - 55552:55552
     - 5556:5556
-   command: /usr/local/bin/init.sh && /rc/multi.sh 
+   command: bash -c "/opt/metasploit-framework/msfrpcd -U msf -P msf -a 172.20.0.24 -p 55552 -f && /opt/metasploit-framework/msfconsole -r /rc/multi.rc"
+
    volumes:
     - ~/.msf4:/root/.msf4
     - /tmp/msf:/tmp/data
