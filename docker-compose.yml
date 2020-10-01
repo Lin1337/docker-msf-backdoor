@@ -1,7 +1,7 @@
 version: "2.2"
 services:
   msfandroid: 
-   image: msf
+   image: pepinoselvagem/msf
    container_name: msfandroid
    stdin_open: true
    tty: true
@@ -16,7 +16,7 @@ services:
     - /tmp/msf:/tmp/data
     - /rc:/rc
 msfunix: 
-   image: msf
+   image: pepinoselvagem/msf
    container_name: msfunix
    stdin_open: true
    tty: true
@@ -31,7 +31,7 @@ msfunix:
     - /tmp/msf:/tmp/data
     - /rc:/rc
 msfwindows: 
-   image: msf
+   image: pepinoselvagem/msf
    container_name: msfwindows
    stdin_open: true
    tty: true
