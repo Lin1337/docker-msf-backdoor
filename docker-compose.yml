@@ -1,45 +1,44 @@
 version: "2.2"
 services:
+ msfmultirpc: 
+  image: pepinoselvagem/msf
+  container_name: msfmultirpc
+  stdin_open: true
+  tty: true
+  networks:
+    static-network:
+      ipv4_address: 172.20.0.22
+  ports:
+    - 5555:5555
+    - 55552:55552
+    - 5556:5556
+  command: bash -c "/opt/metasploit-framework/msfrpcd -U msf -P msf -a 172.20.0.24 -p 55552 -f"
 
-    msfmultirpc: 
-     image: pepinoselvagem/msf
-     container_name: msfmultirpc
-     stdin_open: true
-     tty: true
-     networks:
-       static-network:
-        ipv4_address: 172.20.0.22
-     ports:
-      - 5555:5555
-      - 55552:55552
-      - 5556:5556
-      command: bash -c "/opt/metasploit-framework/msfrpcd -U msf -P msf -a 172.20.0.24 -p 55552 -f"
-
-      volumes:
-        - ~/.msf4:/root/.msf4
-        - /tmp/msf:/tmp/data
-        - /rc:/rc
-        - /rc/db:/var/lib/postgresql/data
-    msfmulti: 
-      image: pepinoselvagem/msf
-      container_name: msfmulti
-      stdin_open: true
-      tty: true
-      networks:
-         static-network:
-           ipv4_address: 172.20.0.24
-      ports:
-       - 5555:5555
-       - 5557:5557
-       - 5556:5556
-       - 4444:4444
-      command: bash -c "/opt/metasploit-framework/msfconsole -r /rc/multi.rc"
+  volumes:
+    - ~/.msf4:/root/.msf4
+    - /tmp/msf:/tmp/data
+    - /rc:/rc
+    - /rc/db:/var/lib/postgresql/data
+ msfmulti: 
+   image: pepinoselvagem/msf
+   container_name: msfmulti
+   stdin_open: true
+   tty: true
+   networks:
+    static-network:
+     ipv4_address: 172.20.0.24
+   ports:
+    - 5555:5555
+    - 5557:5557
+    - 5556:5556
+    - 4444:4444
+   command: bash -c "/opt/metasploit-framework/msfconsole -r /rc/multi.rc"
    
-      volumes:
-       - ~/.msf4:/root/.msf4
-       - /tmp/msf:/tmp/data
-       - /rc:/rc
-       - /rc/db:/var/lib/postgresql/data
+   volumes:
+    - ~/.msf4:/root/.msf4
+    - /tmp/msf:/tmp/data
+    - /rc:/rc
+    - /rc/db:/var/lib/postgresql/data
 networks:
   static-network:
     ipam:
