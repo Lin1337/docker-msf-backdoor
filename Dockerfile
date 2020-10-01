@@ -40,7 +40,6 @@ VOLUME /rc/
 VOLUME /var/lib/postgresql/data
 # Locales for tmux
 ENV LANG C.UTF-8
-WORKDIR /opt/metasploit-framework
+WORKDIR /rc/
 
-ENTRYPOINT [ "init.sh" ]
-CMD ./msfconsole
+CMD /usr/local/bin/init.sh && /opt/metasploit-framework/msfconsole
