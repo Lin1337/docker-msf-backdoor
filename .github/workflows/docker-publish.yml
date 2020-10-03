@@ -3,7 +3,8 @@ name: docker
 on:
   push:
     branches: master
-
+    schedule: 
+      - cron 0 0 * * *
 jobs:
   path-context:
     runs-on: ubuntu-latest
